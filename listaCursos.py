@@ -88,6 +88,7 @@ precio: {curso["precio"]}
 """)
         n += 1
 
+
 def agregar_producto_al_carrito(catalogo):
     # Pedir el id del producto. 
     id_buscar = int(input("Ingresa el id del producto: "))
