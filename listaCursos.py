@@ -88,7 +88,40 @@ precio: {curso["precio"]}
 """)
         n += 1
 
+def agregar_producto_al_carrito(catalogo):
+    # Pedir el id del producto. 
+    id_buscar = int(input("Ingresa el id del producto: "))
+    # Pedir la cantidad (entero > 0). 
+    cantidad = int(input("Ingresa la cantidad de productos a agregar (debe ser un número entero mayor a 0): "))
+    # Validar que el id exista. Si no existe, mostrar mensaje de error. 
+    producto_encontrado = None
+    for producto in catalogo:
+        if producto["id"] == id_buscar:
+            producto_encontrado = producto
+            break
+    if producto_encontrado is None:
+        print("ERROR: EL id seleccionado no existe")
+    # Verificar si el producto ya está en el carrito
+    for item in carrito_de_compras:
+        if item["id"] == id_buscar:
+            item["Cantidad"] += cantidad
+            print("Cantidad actualizada")
+            return
+    # Guardar en el carrito el producto y la cantidad. 
+    nuevo_item = {
+        "id": producto_encontrado["id"],
+        "nombre": producto_encontrado["nombre"],
+        "Categoria": producto_encontrado["Categoria"],
+        "precio": producto_encontrado["precio"],
+        "Horas": producto_encontrado["Horas"],
+        "Nivel": producto_encontrado["Nivel"],
+        "Cantidad": cantidad
+    }
+    carrito_de_compras.append(nuevo_item) 
+    print(carrito_de_compras)
 
+op = menu() 
+opcion(op)
 
 
 
